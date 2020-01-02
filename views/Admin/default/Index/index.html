@@ -1,0 +1,79 @@
+﻿        <div class="row">
+        	<h1 class="page-header">控制面板</h1>
+			<div class="panel panel-default">
+				<div class="panel-heading">统计信息</div>
+				<div class="panel-body">
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="panel panel-primary text-center no-boder bg-color-green green">
+							<div class="panel-left pull-left green">
+								<i class="fa fa-book fa-5x"></i>
+							</div>
+							<div class="panel-right pull-right">
+								<h3>{{.Sys.CntDoc}}</h3>
+								<strong>文档数量</strong>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12 col-xs-12">
+						<div class="panel panel-primary text-center no-boder bg-color-red red">
+							<div class="panel-left pull-left red">
+								<i class="fa fa fa-users fa-5x"></i>
+							</div>
+							<div class="panel-right pull-right">
+								<h3>{{.Sys.CntUser}}</h3>
+								<strong>用户数量</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+                <div class="panel-heading">系统信息</div>
+	            <div class="panel-body">
+	                <div class="table-responsive">
+	                    <table class="table table-bordered table-hover">
+	                        <tbody>
+	                        	 <tr>
+	                                <td>程序</td>
+	                                <td>DocHub(多哈)文库</td>
+	                            </tr>
+	                            <tr>
+	                                <td>版本</td>
+	                                <td>{{.Version}}</td>
+	                            </tr>
+	                            <tr>
+	                                <td>语言</td>
+	                                <td><a href="http://golang.org" target="_blank">Golang</a></td>
+	                            </tr>
+	                            <tr>
+	                                <td>框架</td>
+	                                <td><a href="http://beego.me" target="_blank">Beego {{.BeegoVersion}}</a></td>
+	                            </tr>
+	                            <tr>
+	                                <td>作者</td>
+	                                <td><a href="https://github.com/TruthHun" target="_blank" title="皇虫">皇虫(TruthHun)</a></td>
+	                            </tr>
+	                            <tr>
+	                                <td>邮箱</td>
+	                                <td>TruthHun@QQ.COM</td>
+	                            </tr>
+                                 <tr>
+									 <td>开源地址</td>
+									 <td>
+										 <a href="https://github.com/TruthHun/DocHub/" target="_blank">https://github.com/TruthHun/DocHub/</a>
+										 <span class="color-dark-white">|</span>
+										 <a href="https://gitee.com/TruthHun/DocHub/" target="_blank">https://gitee.com/TruthHun/DocHub/</a>
+									 </td>
+                                 </tr>
+                                 <tr>
+                                     <td>帮助文档</td>
+                                     <td><a href="https://www.bookstack.cn/books/dochub" target="_blank" title="书栈网">https://www.bookstack.cn/books/dochub</a></td>
+                                 </tr>
+	                        </tbody>
+	                    </table>
+	                </div>
+	            </div>
+        </div>
+        </div>
+

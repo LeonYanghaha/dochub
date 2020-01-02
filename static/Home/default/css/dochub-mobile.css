@@ -1,0 +1,148 @@
+/*
+ * Author:  皇虫 
+ * Email: 	TruthHun@QQ.COM
+ * Date: 	2018-09-01
+ * */
+@media (max-width: 768px) {
+    .visible-mobile{display: block;}
+    .hidden-mobile{display: none;}
+    .navbar-fixed-bottom,.navbar-fixed-top{min-width:100% !important;}
+    .page-header{margin-bottom:30px}
+    .page-header .lead{margin-bottom:10px}
+    .container{width:100% !important;max-width: 100%!important;}
+    .container-fluid{min-width: 100% !important;}
+    .navbar-collapse .navbar-nav.navbar-right:last-child{margin-bottom: 0px;}
+    .navbar-nav .open .dropdown-menu>li>a, .navbar-nav .open .dropdown-menu .dropdown-header{
+        padding: 7px 15px 7px 15px!important
+    }
+    .wenku-logo{height: auto;width: 100%;}
+    .carousel-control .fa{top:40%;}
+    .navbar .navbar-nav .open .dropdown-menu>.active>a, .navbar .navbar-nav .open .dropdown-menu>.active>a:focus, .navbar .navbar-nav .open .dropdown-menu>.active>a:hover, .navbar .navbar-nav .open .dropdown-menu>li>a:focus, .navbar .navbar-nav .open .dropdown-menu>li>a:hover{
+        background-color: #1abc9c !important;
+    }
+    .wenku-footer-dark .wenku-help a{
+        margin: 0px 4px;
+    }
+    .wenku-footer-dark .wenku-help{padding: 0px;}
+
+    .wenku-header .col-xs-6{width: 100%;text-align: center;}
+    .wenku-logo{margin:10px auto;}
+    .wenku-header .pull-right{margin-top: 0px;margin-bottom: 15px;}
+    .mobile-banner .col-xs-9{width: 100%;}
+    .mobile-banner .col-xs-3{width: 100%;padding-left: 0px;margin-top: -15px;}
+    .mobile-banner .col-xs-3 .panel{display: none}
+    .mobile-banner .col-xs-3 .wenku-count{display: block;}
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{
+        border-top: 0px;margin-top:0px;
+    }
+    .navbar .container>.navbar-header, .navbar .container-fluid>.navbar-header, .navbar .container>.navbar-collapse, .navbar .container-fluid>.navbar-collapse{
+        padding-left: 0px;padding-right: 0px;margin-left: 0px;margin-right: 0px;
+    }
+
+    #wenku-index .wenku-cate{padding: 10px 0px 15px;margin-top: 15px;}
+    #wenku-index .wenku-cate .col-xs-3{width: 50%;}
+    #wenku-index .wenku-cate .h5{font-size: 20px;}
+
+    #wenku-index .wenku-item .panel-body .col-xs-5{display: none;}
+    #wenku-index .wenku-item .panel-body{padding-bottom: 10px;}
+    #wenku-index .wenku-item .col-xs-6{width: 100%;}
+    #wenku-index .wenku-item .col-xs-7{width: 100%;}
+    #wenku-index .wenku-item .wenku-mgl-15px{margin-left: 0px;}
+    #wenku-index .wenku-item li{line-height: 200%;}
+    #wenku-index a.wenku-text-ellipsis img{display:inline-block !important;width: auto;border: 0px;margin-right: 3px;position: relative;top:-2px;height: 18px;}
+
+    .wenku-footer{padding: 15px 0px;}
+    .wenku-footer-dark{padding: 30px 15px;}
+
+    #wenku-carousel .carousel-inner img{height: auto;}
+
+    /* 列表页 */
+
+    #wenku-list .wenku-main .wenku-right{width: 100%;padding-left: 0px;}
+    #wenku-list .wenku-main .wenku-left{width: 100%;padding-left: 0px;}
+    #wenku-list .wenku-right .wenku-cate .panel-body a{width: auto;margin-right: 15px;}
+    #wenku-list .wenku-hot{display: none;}
+    #wenku-list .panel-body img{width: 100%;}
+    #wenku-list .panel-body .col-xs-1{width: 15%;}
+    #wenku-list .panel-body .col-xs-11{width: 85%;padding-right: 0px;padding-left: 10px;}
+    #wenku-list .wenku-text-ellipsis{white-space: normal;}
+    #wenku-list h3.wenku-text-ellipsis{white-space: nowrap;}
+    #wenku-list .wenku-left .panel-body li.clearfix .help-block>span{display: inline-block;}
+    .pagination{padding: 0px;margin: 5px 0px;}
+    .pagination li{margin-right: 1px;}
+    .pagination li>a, .pagination li>span{
+        border-left: 0px;min-width: auto;
+    }
+    #wenku-list .wenku-left .col-xs-11 .help-block{margin-top: 5px;}
+
+
+    /* 阅读页 */
+    #wenku-content .container{min-width: 100% !important;}
+    #wenku-content.wenku-onlycover .container.wenku-main{min-width: 100% !important;width: 100% !important; }
+    #wenku-content .wenku-header>.container{min-width: 100% !important;width: 100% !important; }
+    #wenku-content .navbar-fixed-bottom{display: none;}
+    #wenku-content .wenku-left{width: 100%;}
+    #wenku-content .wenku-right{display: none;}
+    #wenku-content .wenku-action .pull-left{display: none;}
+    #wenku-content .wenku-action .pull-right{float: left !important;}
+    #wenku-content .wenku-action .pull-right.wenku-mgl-15px{float: right !important;}
+    #wenku-content .wenku-comment .col-xs-3{width: 100%;}
+    #wenku-content .wenku-comment .wenku-answer-tips{width: 100%;text-align: left;padding-left: 0px;margin: -15px 0px 10px;}
+    #wenku-content .wenku-comment .col-xs-2{width: 50%;}
+    #wenku-content .wenku-comment-list .col-xs-1{width: 15%;}
+    #wenku-content .wenku-comment-list .col-xs-11{width: 85%;}
+    #wenku-content .wenku-comment-list .color-gray{width: 100%;font-size: 12px;}
+    #wenku-content .wenku-comment-content{text-indent: 0px;}
+    #wenku-content .wenku-doc-info .pull-right span{margin-left: 0px;margin-right: 15px;}
+    #wenku-content .wenku-unview .col-xs-7{width: 100%;}
+    #wenku-content .wenku-unview .col-xs-5{display: none;}
+    #wenku-content .wenku-preview-tips{text-align: left;}
+
+    /* 用户中心首页 */
+    #wenku-user .wenku-right{width: 100%;padding-right: 0px;}
+    #wenku-user .wenku-rankuser{display: none;}
+    #wenku-user .wenku-left{width: 100%;}
+    #wenku-user .wenku-left .nav-tabs{padding-left: 15px;}
+    /*#wenku-user .wenku-left .nav-tabs li:first-of-type a{border-left: 1px solid #dddddd !important;}*/
+    #wenku-user .wenku-left .nav-tabs li:first-of-type.active a{border-left: 1px solid #dddddd !important;}
+    #wenku-user .wenku-left .pull-right{display: none;}
+    #wenku-user .wenku-list-table-head{display: none;}
+    #wenku-user .wenku-list-table .col-xs-5,#wenku-user .wenku-list-table .col-xs-8{width: 100%;padding-left:0px;padding-right:0px;white-space: normal;}
+    #wenku-user .wenku-list-table-body li{border-bottom: 1px dashed #EFEFEF;}
+    #wenku-user .wenku-list-table-body .col-xs-1,#wenku-user .wenku-list-table-body .col-xs-2,#wenku-user .wenku-list-table-body .col-xs-3{display: none !important;}
+    #wenku-user .wenku-list-thumb .col-xs-3{width: 50%;}
+    #wenku-user .wenku-left .wenku-list-thumb .wenku-title{position: relative;width: 100%;left: 0px;bottom: 39px;}
+
+    /* 用户登录 */
+    #wenku-reg .login-form{width: 100%;}
+    #wenku-reg .login{margin: -10px 0px 15px;}
+    #wenku-reg .login-form{border-radius: 0px;}
+    #wenku-reg .col-xs-8{width: 100%;border-right: 0px;padding: 0px;}
+    /*#wenku-reg .form-horizontal*/
+    #wenku-reg .form-horizontal .form-group .col-sm-2{display: block;}
+    #wenku-reg .form-horizontal .form-group .col-sm-6{width: 50%;display: inline-block;padding-right: 0px;}
+    #wenku-reg .form-horizontal .form-group .col-sm-4{width: 50%;float: right;}
+    #wenku-reg .col-xs-4{width: 100%;padding: 0px;}
+    #wenku-reg .form-header{padding: 10px 15px;}
+    #wenku-reg .login-form .form-box{padding: 25px 15px;}
+    #wenku-reg .form-footer{padding: 5px 15px;}
+
+    /* 搜索 */
+    #wenku-search .wenku-top{display: none;}
+    #wenku-search .wenku-logo{margin: 15px auto;width: auto;}
+    #wenku-search .wenku-header .col-xs-2{width: 100%;}
+    #wenku-search .wenku-header .col-xs-7{width: 100%;padding-right: 0px;}
+    #wenku-search .container .wenku-left{width: 100%;padding-right: 0px;}
+    #wenku-search .container .wenku-left .panel-body{padding-bottom: 0px;}
+    #wenku-search .container .wenku-left li{display: inline-block;}
+    #wenku-search .wenku-left .panel-body li a{padding-left: 0px;padding-right: 10px;font-size: 15px;}
+    #wenku-search .container .col-xs-7{width: 100%;padding-right: 0px;}
+    #wenku-search .panel-ad{display: none;}
+    #wenku-search .container .col-xs-3{width: 100%;}
+    #wenku-search .container .col-xs-3 .panel-body{padding-top: 0px;}
+    #wenku-search .container .col-xs-3 .panel-default > .panel-heading{border-color:#ffffff;}
+    #wenku-search .wenku-left .panel-body li a.active, #wenku-search .wenku-left .panel-body li a:hover{background-color: #ffffff;}
+    #wenku-search .wenku-left ul{margin-bottom: 10px;}
+    #wenku-search .wenku-result{min-height: auto;}
+}
+

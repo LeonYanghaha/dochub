@@ -1,0 +1,116 @@
+<div class="container wenku-main">
+
+    {{/*SEO优化需要，这里的文本内容不需要展示给用户看*/}}
+    <div style="display: none">{{.Content}}</div>
+
+    <div class="row">
+        <div class="{{if .OnlyCover}}col-xs-8{{else}}col-xs-9{{end}} wenku-left wenku-nopadding">
+
+            <div class="panel panel-default wenku-noborder">
+                <div class="panel-body">
+                    <div class="help-block wenku-doc-info">
+							<span>
+								<a href="/list/{{.Breadcrumb.Chanel.Alias}}" title="{{.Breadcrumb.Chanel.Title}}">{{.Breadcrumb.Chanel.Title}}</a> >
+								<a href="/list/{{.Breadcrumb.Chanel.Alias}}/pid/{{.Breadcrumb.Parent.Id}}" title="{{.Breadcrumb.Parent.Title}}">{{.Breadcrumb.Parent.Title}}</a> >
+								<a href="/list/{{.Breadcrumb.Chanel.Alias}}/pid/{{.Breadcrumb.Parent.Id}}/cid/{{.Breadcrumb.Child.Id}}" title="{{.Breadcrumb.Child.Title}}">{{.Breadcrumb.Child.Title}}</a> >
+								<span class="text-muted">文档预览</span>
+							</span>
+                    </div>
+
+                            <div class="wenku-viewer clearfix wenku-unview">
+                                <h1>
+                                    <img alt="{{.Doc.Ext}}文档" src="/static/Home/default/img/{{.Doc.ExtCate}}_24.png"/> {{.Doc.Title}}
+                                    {{if gt $.AdminId 0}}
+                                        <a href="/admin/doc/action?type=remove&id={{.Doc.Id}}" class="text-muted wenku-tooltip wenku-ajax-get" title="将文档移入回收站"><i class="fa fa-recycle"></i></a>
+                                    {{end}}
+                                </h1>
+                                <div class="help-block wenku-preview-tips text-center">
+                                    当前文档正在转换中或不支持在线预览，如需阅读文档内容，请下载原文档
+                                </div>
+                                <div class="col-xs-7 wenku-nopadding pull-right">
+                                    <ul>
+                                        <li><span class="text-muted">文档大小：</span> {{FormatByte .Doc.Size}} </li>
+                                        <li><span class="text-muted">文档格式：</span> {{.Doc.Ext}} </li>
+                                        <li><span class="text-muted">文档页数：</span> -- </li>
+                                        <li><span class="text-muted">下载次数：</span> {{.Doc.Dcnt}} </li>
+                                        <li><span class="text-muted">下载金币：</span> {{if gt .Doc.Price -1}}{{.Doc.Price}}{{else}} <span class="text-danger">不允许下载</span> {{end}} </li>
+                                        <li><span class="text-muted">浏览次数：</span> {{.Doc.Vcnt}} </li>
+                                        <li><span class="text-muted">收藏次数：</span> {{.Doc.Ccnt}} </li>
+                                        <li><span class="text-muted">评论人数：</span> {{.Doc.ScorePeople}} </li>
+                                        <li><span class="text-muted">文档评分：</span> <i class="wenku-star star-{{StarVal .Doc.Score false}}"></i> {{StarVal .Doc.Score true}}分</li>
+                                        <li><span class="text-muted">分享达人：</span> <a href="/user/{{.Doc.Uid}}" target="_blank"title="{{.Doc.Username}}">{{.Doc.Username}}</a></li>
+                                        <li><span class="text-muted">分享时间：</span> {{TimestampFormat .Doc.TimeCreate}}</li>
+                                        {{/*<li><span class="text-muted">文档MD5：</span> {{.Doc.Md5}}</li>*/}}
+                                    </ul>
+                                </div>
+                                <div class="col-xs-5"></div>
+                            </div>
+
+
+                    <div class="help-block wenku-action">
+                        <div class="pull-left">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#ModalReport" class="btn btn-primary btn-sm"><i class="fa fa-warning"></i> 举报</a>
+                        </div>
+                        <div class="pull-right wenku-mgl-15px">
+                            {{if gt .Doc.Price -1}}
+                                <a href="javascript:void(0);" rel="nofollow" data-toggle="modal" data-target="#ModalDownload" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-cloud-download"></i> 下载<span class="hidden-xs">原文档</span>({{FormatByte .Doc.Size}})</a>
+                            {{else}}
+                                <a href="javascript:void(0);" rel="nofollow" class="btn btn-primary btn-sm disabled"><i class="fa fa-cloud-download"></i> 下载<span class="hidden-xs">原文档</span>({{FormatByte .Doc.Size}})</a>
+                            {{end}}
+                        </div>
+                        <div class="pull-right">
+                            <a href="javascript:void(0);" rel="nofollow" class="btn btn-primary btn-sm wenku-collect" data-id="{{.Doc.Id}}"><i class="fa fa-heart-o"></i> 收藏</a>
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#ModalShare" class="btn btn-primary btn-sm"><i class="fa fa-share-alt"></i> 分享</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{template "Comment" .}}
+
+        </div>
+        <div class="{{if .OnlyCover}}col-xs-4{{else}}col-xs-3{{end}} wenku-right">
+
+
+            {{if .Hots}}
+            <div class="panel panel-default wenku-noborder wenku-maylike">
+                <div class="panel-heading">
+                    <div class="strong">热门文档</div>
+                </div>
+                <div class="panel-body">
+
+                    <ul class="wenku-tabs-list">
+                        {{range .Hots}}
+                        <li><img alt="{{.Ext}}文档" src="/static/Home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
+                        {{end}}
+                    </ul>
+                </div>
+            </div>
+            {{end}}
+
+
+            <div class="panel panel-default wenku-noborder wenku-maylike">
+                <div class="panel-heading">
+                    <div class="strong">最新文档</div>
+                </div>
+                <div class="panel-body">
+
+                    <ul class="wenku-tabs-list">
+                        {{range .Latest}}
+                        <li><img alt="{{.Ext}}文档" src="/static/Home/default/img/{{.ExtCate}}_24.png"/><a href="/view/{{.Id}}" target="_blank" title="{{.Title}}">{{.Title}}</a></li>
+                        {{end}}
+                    </ul>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+{{template "ModalDownload" .}}
+{{template "ModalShare" .}}
+{{template "ModalReport" .}}
+{{template "ModalCollect" .}}

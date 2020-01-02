@@ -1,0 +1,370 @@
+    <div class="row">
+            <h1 class="page-header">系统设置</h1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                        <li {{if eq .Tab "default"}}class="active"{{end}}><a href="/admin/sys">网站设置</a></li>
+                        <li {{if eq .Tab "email"}}class="active"{{end}}><a href="/admin/sys?tab=email">邮箱设置</a></li>
+                        <li {{if eq .Tab "depend"}}class="active"{{end}}><a href="/admin/sys?tab=depend">依赖设置</a></li>
+                        <li {{if eq .Tab "logs"}}class="active"{{end}}><a href="/admin/sys?tab=logs">日志设置</a></li>
+                        <li {{if eq .Tab "elasticsearch"}}class="active"{{end}}><a href="/admin/sys?tab=elasticsearch">全文搜索设置</a></li>
+                    </ul>
+
+
+                    <!--网站设置-->
+                    {{if eq .Tab "default"}}
+                        {{with .Sys}}
+                        <form action="" class="wenku-ajax-form" data-redirect="" method="post">
+                            <input type="hidden" name="Id" value="1" />
+                            <div class="form-group">
+                                <label >网站名称</label>
+                                <input type="hidden" name="CntDoc" value="{{.CntDoc}}">
+                                <input type="hidden" name="CntUser" value="{{.CntUser}}">
+                                <input type="text" class="form-control" name="Site" placeholder="请输入站点名称" value="{{.Site}}" />
+                            </div>
+                            <div class="form-group">
+                                <label >绑定域名( <small class="text-muted">[必填]生成sitemap需要用到。示例：https://www.bookstack.cn</small> )</label>
+                                <input type="text" class="form-control" name="DomainPc" value="{{.DomainPc}}" />
+                            </div>
+
+
+                            <div class="form-group">
+                                <label >网站备案号</label>
+                                <input type="text" class="form-control" name="Icp" placeholder="请输入网站备案号，如 桂ICP备 xxxx" value="{{.Icp}}" />
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >是否每天凌晨2:00自动更新站点地图</label>
+                                    <select name="AutoSitemap" class="form-control">
+                                        <option {{if eq .AutoSitemap true}}selected="selected"{{end}} value="true">启用</option>
+                                        <option {{if eq .AutoSitemap false}}selected="selected"{{end}} value="false">关闭</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >请选择存储类型( <small class="text-muted">选择存储类型之前，请务必先 <a href="/admin/cloud-store">配置云存储</a></small> )</label>
+                                    <select name="StoreType" class="form-control">
+                                        <option {{if eq .StoreType "cs-oss"}}selected{{end}} value="cs-oss">OSS（阿里云存储）</option>
+                                        <option {{if eq .StoreType "cs-minio"}}selected{{end}} value="cs-minio">Minio（本地云存储）</option>
+                                        <option {{if eq .StoreType "cs-cos"}}selected{{end}} value="cs-cos">COS（腾讯云存储）</option>
+                                        <option {{if eq .StoreType "cs-bos"}}selected{{end}} value="cs-bos">BOS（百度云存储）</option>
+                                        <option {{if eq .StoreType "cs-obs"}}selected{{end}} value="cs-obs">OBS（华为云存储）</option>
+                                        <option {{if eq .StoreType "cs-qiniu"}}selected{{end}} value="cs-qiniu">QINIU（七牛云存储）</option>
+                                        <option {{if eq .StoreType "cs-upyun"}}selected{{end}} value="cs-upyun">UpYun（又拍云存储）</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >热门文档时间周期</label>
+                                    <select name="TimeExpireHotspot" class="form-control">
+                                        <option  value="31536000" {{if eq .TimeExpireHotspot 31536000}}selected="selected"{{end}}>一年</option>
+                                        <option  value="15552000" {{if eq .TimeExpireHotspot 15552000}}selected="selected"{{end}}>半年</option>
+                                        <option  value="7776000" {{if eq .TimeExpireHotspot 7776000}}selected="selected"{{end}}>三月</option>
+                                        <option value="2592000" {{if eq .TimeExpireHotspot 2592000}}selected="selected"{{end}}>一月</option>
+                                        <option  value="604800" {{if eq .TimeExpireHotspot 604800}}selected="selected"{{end}}>一周</option>
+                                        <option value="86400" {{if eq .TimeExpireHotspot 86400}}selected="selected"{{end}}>一天</option>
+                                        <option  value="0" {{if eq .TimeExpireHotspot 0}}selected="selected"{{end}}>关闭</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >新用户注册奖励金币</label>
+                                    <input type="number" class="form-control" name="CoinReg" value="{{.CoinReg}}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >文档上传金币奖励</label>
+                                    <input type="number" class="form-control" name="Reward" value="{{.Reward}}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >每日签到金币奖励</label>
+                                    <input type="number" class="form-control" name="Sign" value="{{.Sign}}" />
+                                </div>
+                            </div>
+
+
+                            {{/*<div class="col-xs-4" style="padding-left: 0px;">*/}}
+                                {{/*<div class="form-group">*/}}
+                                    {{/*<label >文档水印文本</label>*/}}
+                                    {{/*<input type="text" class="form-control" name="Watermark" placeholder="文档水印文案，留空则表示不添加水印" value="{{.Watermark}}" />*/}}
+                                {{/*</div>*/}}
+                            {{/*</div>*/}}
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >是否开启移动端</label>
+                                    <select name="MobileOn" class="form-control">
+                                        <option {{if eq .MobileOn true}}selected="selected"{{end}} value="true">启用</option>
+                                        <option {{if eq .MobileOn false}}selected="selected"{{end}} value="false">关闭</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >是否允许上传重复文档</label>
+                                    <select name="AllowRepeatedDoc" class="form-control">
+                                        <option {{if eq .AllowRepeatedDoc true}}selected="selected"{{end}} value="true">允许</option>
+                                        <option {{if eq .AllowRepeatedDoc false}}selected="selected"{{end}} value="false">不允许</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >注册时是否要求验证邮箱</label>
+                                    <select name="CheckRegEmail" class="form-control">
+                                        <option {{if .CheckRegEmail}}selected{{end}} value="true">是</option>
+                                        <option {{if .CheckRegEmail}}{{else}}selected{{end}} value="false">否</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {{/*<div class="col-xs-6" style="padding-left: 0px">*/}}
+                                {{/*<div class="form-group">*/}}
+                                    {{/*<label >首页分类(按照顺序输入频道id)</label>*/}}
+                                    {{/*<input type="text" class="form-control" name="HomeCates" placeholder="请按顺序填写频道id，以便在首页显示，多个id用英文逗号分隔" value="{{.HomeCates}}" />*/}}
+                                {{/*</div>*/}}
+                            {{/*</div>*/}}
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >热门推荐(按照顺序输入文档id)</label>
+                                    <input type="text" class="form-control" name="Trends" placeholder="请填写5个文档ID，id之间用英文逗号分隔" value="{{.Trends}}" />
+                                </div>
+                            </div>
+
+                            <!--<div class="col-xs-6 hide" style="padding-left: 0px;">-->
+                                <!--<div class="form-group">-->
+                                    <!--<label >PC端域名</label>-->
+                                    <!--<input type="text" class="form-control" name="DomainPc" value="{{.DomainPc}}" />-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="col-xs-6 hide" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >移动端域名</label>
+                                    <input type="text" class="form-control" name="DomainMobile" value="{{.DomainMobile}}" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >文档评论验证问题</label>
+                                    <input type="text" class="form-control" name="Question" value="{{.Question}}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >文档评论验证问题答案</label>
+                                    <input type="text" class="form-control" name="Answer" value="{{.Answer}}" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4 hide" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >PC端模板(区分大小写)</label>
+                                    <input type="text" class="form-control" name="TplComputer" value="{{.TplComputer}}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-4 hide" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >移动端模板(区分大小写)</label>
+                                    <input type="text" class="form-control" name="TplMobile" value="{{.TplMobile}}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-4 hide" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >后台模板(区分大小写)</label>
+                                    <input type="text" class="form-control" name="TplAdmin" readonly value="{{.TplAdmin}}" />
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >允许上传的最大文件(字节，默认50M)</label>
+                                    <input type="number" class="form-control" name="MaxFile" value="{{.MaxFile}}" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >文档最大预览页数(此参数不要频繁变更；0表示不限制。)</label>
+                                    <input type="number" class="form-control" name="PreviewPage" value="{{.PreviewPage}}" />
+                                </div>
+                            </div>
+                            <div class="col-xs-4" style="padding-left: 0px;">
+                                <div class="form-group">
+                                    <label >每页显示记录数(仅对前台数据生效)</label>
+                                    <input type="number" min="10" max="100" class="form-control" name="ListRows" value="{{.ListRows}}" />
+                                </div>
+                            </div>
+
+
+                            {{/*相关文档功能暂时还没开发，先注释掉*/}}
+                            {{/*<div class="col-xs-6" style="padding-left: 0px;">*/}}
+                                {{/*<div class="form-group">*/}}
+                                    {{/*<label >相关文档时间周期</label>*/}}
+                                    {{/*<select name="TimeExpireRelate" class="form-control">*/}}
+                                        {{/*<option  value="31536000" {{if eq .TimeExpireRelate 31536000}}selected="selected"{{end}}>一年</option>*/}}
+                                        {{/*<option  value="15552000" {{if eq .TimeExpireRelate 15552000}}selected="selected"{{end}}>半年</option>*/}}
+                                        {{/*<option  value="7776000" {{if eq .TimeExpireRelate 7776000}}selected="selected"{{end}}>三月</option>*/}}
+                                        {{/*<option value="2592000" {{if eq .TimeExpireRelate 2592000}}selected="selected"{{end}}>一月</option>*/}}
+                                        {{/*<option  value="604800" {{if eq .TimeExpireRelate 604800}}selected="selected"{{end}}>一周</option>*/}}
+                                        {{/*<option value="86400" {{if eq .TimeExpireRelate 86400}}selected="selected"{{end}}>一天</option>*/}}
+                                        {{/*<option  value="0" {{if eq .TimeExpireRelate 0}}selected="selected"{{end}}>关闭</option>*/}}
+                                    {{/*</select>*/}}
+                                {{/*</div>*/}}
+                            {{/*</div>*/}}
+
+
+
+
+                            <div class="form-group">
+                                <label >注册邮件验证码发送模板(支持html代码,{code}表示邮件验证码)</label>
+                                <textarea name="TplEmailReg" rows="6" class="form-control" placeholder="">{{.TplEmailReg}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label >找回密码邮件验证码发送模板(支持html代码,{code}表示邮件验证码)</label>
+                                <textarea name="TplEmailFindPwd" rows="6" class="form-control" placeholder="">{{.TplEmailFindPwd}}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label >不良信息关键字</label>
+                                <textarea name="DirtyWord" rows="6" class="form-control" placeholder="请输入不良信息关键字，资源过滤需要用到，多个关键字请用空格分隔">{{.DirtyWord}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label >举报原因(<small class="text-muted">文档被举报的原因，多个，请换行输入。格式为"序号:原因"，如"1:垃圾广告"</small>)</label>
+                                <textarea name="ReportReasons" rows="6" class="form-control" placeholder="文档被举报的原因，多个，请换行输入">{{.ReportReasons}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label >统计代码(支持html代码)</label>
+                                <textarea name="Tongji" rows="6" class="form-control" placeholder="请输入站点的统计代码">{{.Tongji}}</textarea>
+                            </div>
+                            <input type="submit" class="btn btn-success" value="提交更改"/>
+                        </form>
+                        {{end}}
+
+                    {{else}}
+
+                        {{if eq .Tab "logs"}}
+                            <div class="col-xs-12 col-sm-7">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-condensed table-hover">
+                                        <caption>日志文件管理</caption>
+                                        <thead>
+                                        <tr>
+                                            <th>文件</th>
+                                            <th>大小</th>
+                                            <th>时间</th>
+                                            <th>操作</th></tr>
+                                        </thead>
+                                        <tbody>
+                                        {{range .Logs}}
+                                            <tr>
+                                                <td>{{.Path}}</td>
+                                                <td>{{FormatByte .Size}}</td>
+                                                <td>{{dateformat .ModTime "2006-01-02 15:04:05"}}</td>
+                                                <td>
+                                                    <a href="/admin/sys/handle-logs?action=download&file={{.Path}}" class="wenku-tooltip" title="下载日志"><i class="fa fa-cloud-download"></i></a>
+                                                    {{/*logs/dochub.log日志文件禁止删除，否则程序无法写入日志*/}}
+                                                    {{if ne .Path "logs/dochub.log"}} |
+                                                        <a href="/admin/sys/handle-logs?action=del&file={{.Path}}" class="wenku-tooltip wenku-ajax-get wenku-confirm" title="删除日志"><i class="fa fa-recycle"></i></a>
+                                                    {{end}}
+                                                </td>
+                                            </tr>
+                                        {{end}}
+                                    </table>
+                            </div>
+                            </div>
+                        {{end}}
+
+                        <form action="" class="wenku-ajax-form {{if eq .Tab "logs"}}col-xs-12 col-sm-5{{end}}" data-redirect="" method="post">
+                            {{if or (eq $.Tab "oss") (eq $.Tab "bos") (eq $.Tab "local") (eq $.Tab "qiniu") (eq $.Tab "cos")}}
+                                <ul class="nav nav-tabs" style="margin-bottom: 15px;">
+                                    <li {{if eq $.Tab "oss"}}class="active"{{end}}><a href="/admin/sys?tab=oss">阿里云OSS存储</a></li>
+                                    <li {{if eq $.Tab "local"}}class="active"{{end}}><a href="/admin/sys?tab=local">本地存储</a></li>
+                                    <li {{if eq $.Tab "cos"}}class="active"{{end}}><a href="/admin/sys?tab=cos">腾讯云COS存储</a></li>
+                                    <li {{if eq $.Tab "bos"}}class="active"{{end}}><a href="/admin/sys?tab=bos">百度云BOS存储</a></li>
+                                    <li {{if eq $.Tab "qiniu"}}class="active"{{end}}><a href="/admin/sys?tab=qiniu">七牛云存储</a></li>
+                                </ul>
+
+                                {{if eq $.Tab "local"}}
+                                    <div class="help-block">如果选择本地存储，则不需要进行任何配置，文档存储到程序目录下的 <strong class="text-muted">./store</strong> 文件夹，请确保该文件夹拥有读写权限</div>
+                                {{end}}
+
+                            {{end}}
+                            {{range .Configs}}
+                                {{if eq $.Tab .Category}}
+                                    <div class="form-group">
+                                        <label >{{.Title}}</label>
+                                        {{if eq .InputType "bool"}}
+                                        <div>
+                                            <label style="font-weight: normal;margin-right: 20px;"><input type="radio" name="{{.Key}}" value="1" {{if eq .Value "1"}}checked{{end}}> 是 </label>
+                                            <label style="font-weight: normal"><input type="radio" name="{{.Key}}" value="0" {{if eq .Value "1"}}{{else}}checked{{end}}> 否</label>
+                                        </div>
+                                        {{else if eq .InputType "number"}}
+                                            <input type="number" class="form-control" name="{{.Key}}" placeholder="" value="{{.Value}}" />
+                                        {{else if eq .InputType "textarea"}}
+                                        <textarea name="{{.Key}}" class="form-control" rows="3">{{.Value}}</textarea>
+                                        {{else}}
+                                            <input type="text" class="form-control" name="{{.Key}}" placeholder="" value="{{.Value}}" />
+                                        {{end}}
+                                        <div class="help-block">{{.Description}}</div>
+                                    </div>
+                                {{end}}
+                            {{end}}
+                            <input type="submit" class="btn btn-success" value="提交更改"/>
+                            {{if eq $.Tab "email"}}
+                                <div class="help-block text-danger"><span class="text-danger">每次变更邮箱配置，程序将自动发送一封测试邮件到测试邮箱以验证配置是否正确，配置不正确，则不会更改原配置</span> </div>
+                            {{end}}
+                            {{if eq $.Tab "oss"}}
+                                <a href="/admin/test/ping-oss" class="btn btn-default wenku-ajax-get">测试OSS连通</a>
+                                <div class="help-block"> <span class="text-danger">请先保存更改再进行测试</span> </div>
+                            {{end}}
+                            {{if eq $.Tab "elasticsearch"}}
+                                <input type="hidden" name="type" value="fulltext">
+                                <a href="/admin/elasticsearch/rebuild" title="重建全量索引" class="btn btn-default wenku-ajax-get">重建全量索引</a>
+                                <hr>
+                                    <div class="help-block">
+                                        <span>索引数量：{{.Count}}</span>
+                                        &nbsp;&nbsp; | &nbsp;&nbsp;
+                                        <span>连通状态：
+                                            {{if .ErrES}}
+                                            <span class="text-danger">{{.ErrES}}</span>
+                                            {{else}}
+                                                <span class="text-success">成功</span>
+                                            {{end}}
+                                        </span>
+                                    </div>
+                            {{end}}
+                            {{if eq $.Tab "depend"}}
+                            <div class="help-block">
+                                <h4>重要：如果需要 <span class="text-danger">sudo</span> 权限才能执行命令，则在命令前加上sudo。如<span class="text-danger">pdf2svg</span> 这个命令，修改为 <span class="text-danger">sudo pdf2svg</span> </h4>
+                            </div>
+                            {{end}}
+                        </form>
+
+
+
+                    {{end}}
+
+
+                </div>
+            </div>
+
+    </div>

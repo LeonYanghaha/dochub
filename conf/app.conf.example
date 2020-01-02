@@ -1,0 +1,76 @@
+
+# 项目名称
+appname = DocHub
+
+# 运行端口
+httpport = 8090
+
+# 运行模式：prod, dev【正式站点，务必设置为prod】
+runmode = dev
+
+# 开启GZip[建议开启]
+EnableGzip=true
+
+# 必须启用XSRF
+enablexsrf = true
+xsrfkey = 8fd70cd11c371951b1f385f452784fbb
+xsrfexpire = 3600
+
+# cookie的加密密钥
+CookieSecret=jLGy7yFD69dYItVJ
+
+# 静态文件扩展名【注意：不要把.conf设置为扩展名，以避免泄露数据库账号密码】
+StaticExt=.txt,.html,.ico,.jpeg,.png,.gif,.xml
+
+############ SESSION #############
+
+# 必须启用session，否则无法登录
+sessionon = true
+
+# 使用文件的形式存储session
+SessionProvider=file
+
+#Session存放位置
+SessionProviderConfig=cache/session
+
+# session的名称
+SessionName=dochub
+
+############ SESSION #############
+
+
+
+############ 数据库配置 start ############
+
+#数据库配置
+[db]
+
+# 数据库host（之前分内网host和外网host，当初只是为了开发方便。但是后来发现，用户在使用的时候会感觉很不方便，所以移除了内网和外网的区分）
+host=localhost
+
+#数据库端口
+port=3306
+
+# 数据库用户名
+user=root
+
+# 数据库密码
+password=
+
+# 使用的数据库的名称
+database=dochub
+
+# 表前缀
+prefix=hc_
+
+# 数据库字符编码
+charset=utf8
+
+#设置最大空闲连接
+maxIdle= 50
+
+#设置最大数据库连接
+maxConn= 300
+
+
+############ 数据库配置 end ############
